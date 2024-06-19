@@ -8,12 +8,25 @@ import withErrorApi from '../../hoc-helpers/withErrorApi';
 import { getPeopleId, getPeopleImage } from '../../services/getPeopleData';
 import { debounce } from 'lodash';
 import UiInput from '../../components/UI/UiInput/UiInput';
+import { useLocation } from 'react-router';
+import ReactGA from 'react-ga4';
 
 const SearchPage = ({ setErrorApi }) => {
   const [inputSearchValue, setInputSearchValue] = useState('');
   const [people, setPeople] = useState([]);
 
-  const getResponse = async (param) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: 'page_view',
+      page_location: window.location.href,
+      page_path: location.pathname,
+      page_title: document.title,
+    });
+  }, [location]);
+
+  const getResponse = async param => {
     const res = await getApiResourse(API_SEARCH + param);
 
     if (res) {
@@ -38,11 +51,11 @@ const SearchPage = ({ setErrorApi }) => {
   }, []);
 
   const debounceGetResponse = useCallback(
-    debounce((value) => getResponse(value), 300),
+    debounce(value => getResponse(value), 300),
     [],
   );
 
-  const handleInputChange = (value) => {
+  const handleInputChange = value => {
     // const value = event.target.value;
 
     setInputSearchValue();

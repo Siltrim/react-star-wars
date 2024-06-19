@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { API_PERSON } from '../../constants/api';
 import { getApiResourse } from '../../utils/network';
 import withErrorApi from '../../hoc-helpers/withErrorApi';
@@ -14,7 +14,11 @@ import styles from './PersonPage.module.css';
 import UiLoading from '../../components/UI/UiLoading/UiLoading';
 import { useSelector } from 'react-redux';
 
-const PersonFilms = React.lazy(() => import('../../components/PersonPage/PersonFilms/PersonFilms'));
+import ReactGA from 'react-ga4';
+
+const PersonFilms = React.lazy(() =>
+  import('../../components/PersonPage/PersonFilms/PersonFilms'),
+);
 
 const PersonPage = ({ setErrorApi }) => {
   const { id } = useParams();
@@ -25,7 +29,17 @@ const PersonPage = ({ setErrorApi }) => {
   const [personId, setPersonId] = useState(null);
   const [personFavorite, setPersonFavorite] = useState(false);
 
-  const storeDate = useSelector((state) => state.favoriteReducer);
+  const location = useLocation();
+  useEffect(() => {
+    ReactGA.send({
+      hitType: 'page_view',
+      page_location: window.location.href,
+      page_path: location.pathname,
+      page_title: document.title,
+    });
+  }, [location]);
+
+  const storeDate = useSelector(state => state.favoriteReducer);
 
   useEffect(() => {
     (async () => {

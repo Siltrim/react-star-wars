@@ -3,11 +3,18 @@ import PropTypes from 'prop-types';
 
 import withErrorApi from '../../hoc-helpers/withErrorApi';
 import PeopleList from '../../components/PeoplePage/PeopleList';
-import { getPeopleId, getPeopleImage, getPeoplePageId } from '../../services/getPeopleData';
+import {
+  getPeopleId,
+  getPeopleImage,
+  getPeoplePageId,
+} from '../../services/getPeopleData';
 import { changeHTTP, getApiResourse } from '../../utils/network';
 import { API_PEOPLE } from '../../constants/api';
 import { useQueryParams } from '../../hooks/useQueryParams';
 import PeopleNavigation from '../../components/PeoplePage/PeopleNavigation/PeopleNavigation';
+import { useLocation } from 'react-router';
+
+import ReactGA from 'react-ga4';
 
 const PeoplePage = ({ setErrorApi }) => {
   const [people, setPeople] = React.useState(null);
@@ -18,7 +25,18 @@ const PeoplePage = ({ setErrorApi }) => {
   const query = useQueryParams();
   const queryPage = query.get('page');
 
-  const getResource = async (url) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: 'page_view',
+      page_location: window.location.href,
+      page_path: location.pathname,
+      page_title: document.title,
+    });
+  }, [location]);
+
+  const getResource = async url => {
     const res = await getApiResourse(url);
 
     if (res) {
