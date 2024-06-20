@@ -3,23 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './PeopleNavigation.module.css';
 import UiButton from '../../UI/UiButton/UiButton';
-import ReactGA from 'react-ga4';
 
 const PeopleNavigation = ({ getResource, prevPage, nextPage, counterPage }) => {
   const handleChangeNext = () => {
-    ReactGA.event({
-      category: 'Персонажи',
-      action: 'Нажатие на кнопку Next',
-      label: `Страница ${counterPage + 1}`,
-    });
     getResource(nextPage);
   };
   const handleChangePrev = () => {
-    ReactGA.event({
-      category: 'Персонажи',
-      action: 'Нажатие на кнопку Previous',
-      label: `Страница ${counterPage + 1}`,
-    });
     getResource(prevPage);
   };
   return (

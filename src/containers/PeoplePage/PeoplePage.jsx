@@ -14,8 +14,6 @@ import { useQueryParams } from '../../hooks/useQueryParams';
 import PeopleNavigation from '../../components/PeoplePage/PeopleNavigation/PeopleNavigation';
 import { useLocation } from 'react-router';
 
-import ReactGA from 'react-ga4';
-
 const PeoplePage = ({ setErrorApi }) => {
   const [people, setPeople] = React.useState(null);
   const [prevPage, setPrevPage] = React.useState(null);
@@ -26,15 +24,6 @@ const PeoplePage = ({ setErrorApi }) => {
   const queryPage = query.get('page');
 
   const location = useLocation();
-
-  useEffect(() => {
-    ReactGA.send({
-      hitType: 'page_view',
-      page_location: window.location.href,
-      page_path: location.pathname,
-      page_title: document.title,
-    });
-  }, [location]);
 
   const getResource = async url => {
     const res = await getApiResourse(url);

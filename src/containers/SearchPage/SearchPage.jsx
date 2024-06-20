@@ -9,22 +9,12 @@ import { getPeopleId, getPeopleImage } from '../../services/getPeopleData';
 import { debounce } from 'lodash';
 import UiInput from '../../components/UI/UiInput/UiInput';
 import { useLocation } from 'react-router';
-import ReactGA from 'react-ga4';
 
 const SearchPage = ({ setErrorApi }) => {
   const [inputSearchValue, setInputSearchValue] = useState('');
   const [people, setPeople] = useState([]);
 
   const location = useLocation();
-
-  useEffect(() => {
-    ReactGA.send({
-      hitType: 'page_view',
-      page_location: window.location.href,
-      page_path: location.pathname,
-      page_title: document.title,
-    });
-  }, [location]);
 
   const getResponse = async param => {
     const res = await getApiResourse(API_SEARCH + param);
