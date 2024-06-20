@@ -16,10 +16,10 @@ const App = () => {
         <Header />
         <Routes>
           {routesConfig.map((route, index) => {
-            <>
+            <React.Fragment key={index}>
               <RouteChangeHandler desk={route.desk} />
-              <Route key={index} path={route.path} element={route.element} />
-            </>;
+              <Route path={route.path} element={route.element} />
+            </React.Fragment>;
           })}
         </Routes>
       </div>
