@@ -9,30 +9,37 @@ const routesConfig = [
   {
     path: '/',
     element: <HomePage />,
+    desk: 'Home page',
   },
   {
     path: '/people',
     element: <PeoplePage />,
+    desk: 'People page',
   },
   {
     path: '/people/:id',
     element: <PersonPage />,
+    desk: 'Person page',
   },
   {
     path: '/not-found',
     element: <NotFoundPage />,
+    desk: 'Person page',
   },
   {
     path: '/favorites',
     element: <FavoritePage />,
+    desk: 'Person page',
   },
   {
     path: '/search',
     element: <SearchPage />,
+    desk: 'Person page',
   },
   {
     path: '*',
     element: <NotFoundPage />,
+    desk: 'Person page',
   },
 ];
 

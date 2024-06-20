@@ -7,17 +7,20 @@ import Header from '../Header';
 import routesConfig from '../../routes/routesConfig';
 
 import styles from './App.module.css';
+import { RouteChangeHandler } from '../../components/RouteChange/RouteChangeHandler';
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className={styles.wrapper}>
         <Header />
-
         <Routes>
-          {routesConfig.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
+          {routesConfig.map((route, index) => {
+            <>
+              <RouteChangeHandler desk={route.desk} />
+              <Route key={index} path={route.path} element={route.element} />
+            </>;
+          })}
         </Routes>
       </div>
     </BrowserRouter>
