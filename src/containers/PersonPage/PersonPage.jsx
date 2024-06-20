@@ -14,8 +14,6 @@ import styles from './PersonPage.module.css';
 import UiLoading from '../../components/UI/UiLoading/UiLoading';
 import { useSelector } from 'react-redux';
 
-import ReactGA from 'react-ga4';
-
 const PersonFilms = React.lazy(() =>
   import('../../components/PersonPage/PersonFilms/PersonFilms'),
 );
@@ -30,14 +28,6 @@ const PersonPage = ({ setErrorApi }) => {
   const [personFavorite, setPersonFavorite] = useState(false);
 
   const location = useLocation();
-  useEffect(() => {
-    ReactGA.send({
-      hitType: 'page_view',
-      page_location: window.location.href,
-      page_path: location.pathname,
-      page_title: document.title,
-    });
-  }, [location]);
 
   const storeDate = useSelector(state => state.favoriteReducer);
 

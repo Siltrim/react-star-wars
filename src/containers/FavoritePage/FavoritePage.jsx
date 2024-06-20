@@ -4,7 +4,6 @@ import styles from './FavoritePage.module.css';
 import { useSelector } from 'react-redux';
 import PeopleList from '../../components/PeoplePage/PeopleList/PeopleList';
 import { useLocation } from 'react-router';
-import ReactGA from 'react-ga4';
 
 const FavoritePage = () => {
   const [people, setPeople] = useState([]);
@@ -12,15 +11,6 @@ const FavoritePage = () => {
   const storeDate = useSelector(state => state.favoriteReducer);
 
   const location = useLocation();
-
-  useEffect(() => {
-    ReactGA.send({
-      hitType: 'page_view',
-      page_location: window.location.href,
-      page_path: location.pathname,
-      page_title: document.title,
-    });
-  }, [location]);
 
   useEffect(() => {
     const arr = Object.entries(storeDate);
