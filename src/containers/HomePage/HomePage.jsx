@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import ChooseSide from '../../components/HomePage/ChooseSide/ChooseSide';
+import { RouteChangeHandler } from '../../components/RouteChange/RouteChangeHandler';
 
 const HomePage = () => {
   return (
     <>
+      <RouteChangeHandler desk={'Home page'} />
       <h1 className="header__text">Home Page</h1>;
     </>
   );

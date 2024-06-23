@@ -15,12 +15,9 @@ const App = () => {
       <div className={styles.wrapper}>
         <Header />
         <Routes>
-          {routesConfig.map((route, index) => {
-            <React.Fragment key={index}>
-              <RouteChangeHandler desk={route.desk} />
-              <Route path={route.path} element={route.element} />
-            </React.Fragment>;
-          })}
+          {routesConfig.map((route, index) => (
+            <Route key={index} path={route.path} element={route.element} />
+          ))}
         </Routes>
       </div>
     </BrowserRouter>
