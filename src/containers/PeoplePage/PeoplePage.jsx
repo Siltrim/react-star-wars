@@ -13,6 +13,7 @@ import { API_PEOPLE } from '../../constants/api';
 import { useQueryParams } from '../../hooks/useQueryParams';
 import PeopleNavigation from '../../components/PeoplePage/PeopleNavigation/PeopleNavigation';
 import { useLocation } from 'react-router';
+import { RouteChangeHandler } from '../../components/RouteChange/RouteChangeHandler';
 
 const PeoplePage = ({ setErrorApi }) => {
   const [people, setPeople] = React.useState(null);
@@ -54,6 +55,7 @@ const PeoplePage = ({ setErrorApi }) => {
   }, []);
   return (
     <>
+      <RouteChangeHandler desk={'People page'} />
       <PeopleNavigation
         getResource={getResource}
         prevPage={prevPage}

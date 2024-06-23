@@ -6,7 +6,7 @@ export const RouteChangeHandler = ({ desk }) => {
   const location = useLocation();
 
   useEffect(() => {
-    const description = desk; // Определите описание для каждой страницы
+    const description = desk;
     onRouteChange(description);
   }, [location]);
 
