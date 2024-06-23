@@ -6,9 +6,17 @@ import UiButton from '../../UI/UiButton/UiButton';
 
 const PeopleNavigation = ({ getResource, prevPage, nextPage, counterPage }) => {
   const handleChangeNext = () => {
+    window.gtag('event', 'click', {
+      event_category: 'button',
+      event_label: 'Next Button',
+    });
     getResource(nextPage);
   };
   const handleChangePrev = () => {
+    window.gtag('event', 'click', {
+      event_category: 'button',
+      event_label: 'Prev Button',
+    });
     getResource(prevPage);
   };
   return (
